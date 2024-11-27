@@ -40,8 +40,10 @@ namespace _12_i_backend_lekerdezes
                 List<kacsaClass> kacsaList = JsonConvert.DeserializeObject<List<kacsaClass>>(stringResponse);
                 foreach (kacsaClass item in kacsaList)
                 {
+                    Border oneBorder = new Border();
                     Grid oneGrid = new Grid();
-                    kacsak.Children.Add(oneGrid);
+                    oneBorder.Child = oneGrid;
+                    kacsak.Children.Add(oneBorder);
                     RowDefinition firstRow = new RowDefinition();
                     RowDefinition secondRow = new RowDefinition();
                     RowDefinition thirdRow = new RowDefinition();
@@ -60,11 +62,25 @@ namespace _12_i_backend_lekerdezes
 
                     Grid.SetRow(LengthTextBlock, 1);
                     Grid.SetRow(SellButton, 2);
+                    
+                    SellButton.Background= new SolidColorBrush((Color)ColorConverter.ConvertFromString("#484848"));
+                    SellButton.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("red"));
+                    SellButton.Foreground= new SolidColorBrush((Color)ColorConverter.ConvertFromString("white"));
+
+
 
                     NameTextBlock.Text = $"Név: {item.name}";
                     LengthTextBlock.Text = $"Hossz: {item.length}";
                     SellButton.Content = "Eladás";
-                    //oneGrid.Background = "#484848";
+                    oneBorder.Margin = new Thickness(5);
+                    oneBorder.CornerRadius = new CornerRadius(10);
+                    oneBorder.Padding = new Thickness(5);
+                    oneBorder.Width = 100;
+                    oneBorder.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("white"));
+                    oneBorder.BorderThickness = new Thickness(2);
+                    oneBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#484848"));
+                    NameTextBlock.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("white"));
+                    LengthTextBlock.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("white"));
                     //oneBlock.Text = $"Kacsa neve: {item.name}, kacsa hossza: {item.length}";
 
                 }
