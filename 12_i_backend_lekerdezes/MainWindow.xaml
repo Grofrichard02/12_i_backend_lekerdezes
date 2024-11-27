@@ -6,67 +6,234 @@
         xmlns:local="clr-namespace:_12_i_backend_lekerdezes"
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="600">
-    <Grid>
+    <Grid Background="#191919">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid>
+        <Grid Grid.Row="0" Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="30"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <TextBlock 
-            Grid.Row="0" 
-            Grid.Column="0"
-            FontSize="30"
-            TextAlignment="Center"
-            VerticalAlignment="Center">
-            Kacsa neve:</TextBlock>
             <TextBlock
-            Grid.Row="1" 
-            Grid.Column="0"
-            FontSize="30"
-            TextAlignment="Center"
-            VerticalAlignment="Center">
-            Kacsa hossza:
-            </TextBlock>
-            <Button
-           Grid.Row="2"
-           Grid.Column="0"
-           Grid.ColumnSpan="2"
-           Click="AddKacsa">
-                Hozzáadás
-            </Button>
-            <TextBox
-            Name="nev"
-            Grid.Column="1"
-            Grid.Row="0"
-            FontSize="24"
-            VerticalAlignment="Center">
-                Béla
-            </TextBox>
-            <TextBox
-            Name="hossz"
-            Grid.Column="1"
-            Grid.Row="1"
-            FontSize="24"
-            VerticalAlignment="Center">
-                20
-            </TextBox>
+                TextAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="20"
+                Foreground="White">Kacsa létrehozása</TextBlock>
+            <Border Grid.Row="1"
+                    Background="#282828"
+                    CornerRadius="25"
+                    Margin="10"
+                    >
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Foreground="White"
+                        TextAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="20"
+                        Grid.Row="0"
+                        Grid.Column="0">Név:</TextBlock>
+                    <TextBlock
+                        Foreground="White"
+                        TextAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="20"
+                        Grid.Row="1"
+                        Grid.Column="0">Hossz:</TextBlock>
+
+                    <Button Grid.ColumnSpan="2" Click="AddKacsa"
+                        Grid.Row="2"
+                        Margin="70 5"
+                            Foreground="White"
+                        Content="Hozzáadás">
+                        <!-- Gomb háttérszínének beállítása -->
+                        <Button.Background>
+                            <SolidColorBrush Color="#282828"/>
+                        </Button.Background>
+
+                        <!-- Gomb keret színének beállítása -->
+                        <Button.BorderBrush>
+                            <SolidColorBrush Color="Lime"/>
+                        </Button.BorderBrush>
+
+                        <!-- Gomb keret vastagságának beállítása -->
+                        <Button.BorderThickness>
+                            <Thickness>2</Thickness>
+                        </Button.BorderThickness>
+
+                        <!-- Gomb sarok radiusának beállítása -->
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="15">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <TextBox Margin="5 7" Grid.Column="1" Foreground="White" Name="KacsaNameTextBox" 
+         HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                        <TextBox.BorderBrush>
+                            <SolidColorBrush Color="Gold"/>
+                        </TextBox.BorderBrush>
+                        <TextBox.BorderThickness>
+                            <Thickness>2</Thickness>
+                        </TextBox.BorderThickness>
+                        <TextBox.Background>
+                            <SolidColorBrush Color="#282828"/>
+                        </TextBox.Background>
+                        <TextBox.Template>
+                            <ControlTemplate TargetType="TextBox">
+                                <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="15">
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Border>
+                            </ControlTemplate>
+                        </TextBox.Template>
+                    </TextBox>
+
+                    <TextBox Margin="5 7" Grid.Column="1" Grid.Row="1" Foreground="White" Name="KacsaLengthTextBox" 
+         HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                        <TextBox.BorderBrush>
+                            <SolidColorBrush Color="Gold"/>
+                        </TextBox.BorderBrush>
+                        <TextBox.BorderThickness>
+                            <Thickness>2</Thickness>
+                        </TextBox.BorderThickness>
+                        <TextBox.Background>
+                            <SolidColorBrush Color="#282828"/>
+                        </TextBox.Background>
+                        <TextBox.Template>
+                            <ControlTemplate TargetType="TextBox">
+                                <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="15">
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Border>
+                            </ControlTemplate>
+                        </TextBox.Template>
+                    </TextBox>
+
+                </Grid>
+            </Border>
         </Grid>
-        <StackPanel
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock
+                    Grid.Row="0"
+                    TextAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="20"
+                    Foreground="White">Statisztika
+            </TextBlock>
+
+            <Border 
+                Grid.Row="1"
+                Background="#282828"
+                CornerRadius="25"
+                Margin="10">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                    Grid.Row="0"
+                    TextAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Foreground="White">Kacsák száma:
+                    </TextBlock>
+                    <TextBlock
+                    Grid.Row="1"
+                    TextAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Foreground="White">Legkisebb kacsa:
+                    </TextBlock>
+                    <TextBlock
+                    Grid.Row="2"
+                    TextAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Foreground="White">Legnagyobb kacsa:
+                    </TextBlock>
+                    <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    TextAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Foreground="White"
+                        Name="KacsaDarab"
+                        >
+                        
+                    </TextBlock>
+                    <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    TextAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Foreground="White"
+                        Name="KacsaMin">
+                    </TextBlock>
+                    <TextBlock
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    TextAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Foreground="White"
+                        Name="KacsaMax">
+                    
+                    </TextBlock>
+                </Grid >
+            </Border>
+        </Grid>
+        <Border
             Grid.Row="1"
-            Name="kacsak">
-           
-        </StackPanel>
+            Grid.ColumnSpan="2"
+            Background="#282828"
+            Margin="20"
+            CornerRadius="25"
+            Padding="10"
+            BorderBrush="#484848" 
+                    BorderThickness="2">
+            <StackPanel
+                Orientation="Horizontal" Name="kacsak">
+                
+            </StackPanel>
+        </Border>
+
+    
     </Grid>
 </Window>

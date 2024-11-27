@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Net.Http;
 using Newtonsoft.Json;
-
+using System.Windows.Media.TextFormatting;
 namespace _12_i_backend_lekerdezes
 {
     /// <summary>
@@ -40,9 +40,33 @@ namespace _12_i_backend_lekerdezes
                 List<kacsaClass> kacsaList = JsonConvert.DeserializeObject<List<kacsaClass>>(stringResponse);
                 foreach (kacsaClass item in kacsaList)
                 {
-                    TextBlock oneBlock = new TextBlock();
-                    oneBlock.Text = $"Kacsa neve: {item.name}, kacsa hossza: {item.length}";
-                    kacsak.Children.Add(oneBlock);
+                    Grid oneGrid = new Grid();
+                    kacsak.Children.Add(oneGrid);
+                    RowDefinition firstRow = new RowDefinition();
+                    RowDefinition secondRow = new RowDefinition();
+                    RowDefinition thirdRow = new RowDefinition();
+
+                    oneGrid.RowDefinitions.Add(firstRow);
+                    oneGrid.RowDefinitions.Add(secondRow);
+                    oneGrid.RowDefinitions.Add(thirdRow);
+
+                    TextBlock NameTextBlock = new TextBlock();
+                    TextBlock LengthTextBlock = new TextBlock();
+                    Button SellButton = new Button();
+
+                    oneGrid.Children.Add(NameTextBlock);
+                    oneGrid.Children.Add(LengthTextBlock);
+                    oneGrid.Children.Add(SellButton);
+
+                    Grid.SetRow(LengthTextBlock, 1);
+                    Grid.SetRow(SellButton, 2);
+
+                    NameTextBlock.Text = $"Név: {item.name}";
+                    LengthTextBlock.Text = $"Hossz: {item.length}";
+                    SellButton.Content = "Eladás";
+                    //oneGrid.Background = "#484848";
+                    //oneBlock.Text = $"Kacsa neve: {item.name}, kacsa hossza: {item.length}";
+
                 }
             }
             catch (Exception e)
@@ -61,8 +85,8 @@ namespace _12_i_backend_lekerdezes
             {
                 var jsonObject = new
                 {
-                    name = nev.Text,
-                    length = hossz.Text
+                    name = KacsaNameTextBox.Text,
+                    length = KacsaLengthTextBox.Text
                 };
 
                 string jsonData = JsonConvert.SerializeObject(jsonObject);
